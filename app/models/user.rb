@@ -12,12 +12,12 @@ class User < ApplicationRecord
     end
 
     def admin?
-        role == 'admin'
+        role == "admin"
     end
 
     def delete!
         if deleted?
-            errors.add(:deleted_user_error, 'User already deleted')
+            errors.add(:deleted_user_error, "User already deleted")
         else
             update!(deleted_at: Time.now)
         end
@@ -33,9 +33,6 @@ class User < ApplicationRecord
 
     def welcome_email(user)
         @user = user
-        mail(to: @user.email, subject: 'Welcome to Our App')
+        mail(to: @user.email, subject: "Welcome to Our App")
     end
-    
-    
-
 end
