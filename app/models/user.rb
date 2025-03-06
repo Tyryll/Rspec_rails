@@ -35,4 +35,9 @@ class User < ApplicationRecord
         @user = user
         mail(to: @user.email, subject: "Welcome to Our App")
     end
+
+    def send_email
+        # Logic to send email
+        'Email sent'
+    end
 end

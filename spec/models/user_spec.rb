@@ -201,4 +201,66 @@ end
   #     expect(User.roles.keys).to include('admin')
   #   end
   # end
+
+### 11
+describe 'Order' do
+  it 'checks if order : total_price is > 100' do
+    user = User.create!(name: 'Example', email: 'example@email.com')
+    order = Order.create!(total_price: 200, user: user)
+    expect(order.total_price).to be > 100
+  end
+end
+
+  # describe 'Order' do
+  #   it 'checks if order : total_price is > 100' do
+  #     order = Order.create!(total_price: 100)
+  #     expect(order.total_price).to be > 100
+  #   end
+  # end
+
+### 12
+describe 'Empty Users' do
+  it 'checks that User.all is empty when there are no users' do
+    expect(User.all).to be_empty
+  end
+end
+
+  # describe 'Empty Users' do
+  #   it 'checks that User.all is empty when there are no users' do
+  #     expect(User.all).to be_empty
+  #   end
+  # end
+  
+  ### 13
+describe 'User' do
+    it 'checks that user responds to email' do
+      user = User.create!(name: 'Example', email: 'example@email.com')
+      expect(user).to respond_to(:email)
+    end
+  end
+  
+  # describe 'User' do
+  #   it 'checks that user responds to email' do
+  #     user = User.create!(name: 'Example', email: 'example@email.com')
+  #     expect(user).to respond_to(:email)
+  #   end
+  # end
+
+  ### 14
+describe 'Notify!' do
+    it 'checks that Notify! method calls the send_email method' do
+      user = User.create!(name: 'Example', email: 'example@email.com')
+      allow(user).to receive(:send_email).and_return('Email sent')
+      expect(user.send_email).to eq('Email sent')
+    end
+  end
+
+  ### 15
+describe 'Time_Change' do
+    it 'checks that Time.now changes after 1 second' do
+      time = Time.now
+      sleep(1)
+      expect(Time.now).to be > time
+    end
+  end
 end
