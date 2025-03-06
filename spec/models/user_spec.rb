@@ -346,7 +346,7 @@ describe 'Session_reset' do
 
 #     expect(session[:user_id]).to be_nil
 #   end
-# end  
+# end
 
 ### 20
 describe 'Validation_failure' do
@@ -356,10 +356,10 @@ describe 'Validation_failure' do
     end
   end
 
-# describe 'Validation_failure' do
-#   it 'verifies that user.save! raises ActiveRecord::RecordInvalid if user fails validation' do
-#     user = User.new
-#     expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid)
-#   end
-# end
+  # describe 'Validation_failure' do
+  #   it 'verifies that user.save! raises ActiveRecord::RecordInvalid if user fails validation' do
+  #     user = User.new
+  #     expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+  #   end
+  # end
 end
