@@ -255,6 +255,14 @@ describe 'Notify!' do
     end
   end
 
+# describe 'Notify!' do
+#   it 'checks that Notify! method calls the send_email method' do
+#     user = User.create!(name: 'Example', email: 'example@email.com')
+#     allow(user).to receive(:send_email).and_return('Email sent')
+#     expect(user.send_email).to eq('Email sent')
+#   end
+# end
+
 ### 15
 describe 'Time_Change' do
     it 'checks that Time.now changes after 1 second' do
@@ -263,4 +271,95 @@ describe 'Time_Change' do
       expect(Time.now).to be > time
     end
   end
+
+# describe 'Time_Change' do
+#   it 'checks that Time.now changes after 1 second' do
+#     time = Time.now
+#     sleep(1)
+#     expect(Time.now).to be > time
+#   end
+# end
+
+### 16
+describe 'User Find' do
+    it 'ensures User.find_by (id:1) returns nil when user doesnt exist' do
+      expect(User.find_by(id: 1)).to be_nil
+    end
+  end
+
+# describe 'User Find' do
+#   it 'ensures User.find_by (id:1) returns nil when user doesnt exist' do
+#     expect(User.find_by(id: 1)).to be_nil
+#   end
+# end
+
+### 17
+describe 'Admin_user' do
+    it 'verifies that admin_user returns true only if users role is :admin' do
+      user = User.create!(name: 'Example', email: 'example@email.com', role: :admin)
+      expect(user.admin?).to be true
+    end
+  end
+
+# describe 'Admin_user' do
+#   it 'verifies that admin_user returns true only if users role is :admin' do
+#     user = User.create!(name: 'Example', email: 'example@email.com', role: :admin)
+#     expect(user.admin?).to be true
+#   end
+# end
+
+### 18
+describe 'Unchange_Email' do
+    it 'ensure update!(name: "New Name") does not change the email field' do
+      user = User.create!(name: 'Example', email: 'example@email.com')
+      user.update!(name: 'New Name')
+      expect(user.email).to eq('example@email.com')
+    end
+  end
+
+# describe 'Unchange_Email' do
+#   it 'ensure update!(name: "New Name") does not change the email field' do
+#     user = User.create!(name: 'Example', email: 'example@email.com')
+#     user.update!(name: 'New Name')
+#     expect(user.email).to eq('example@email.com')
+#   end
+# end
+
+### 19
+describe 'Session_reset' do
+    it 'ensures logout! resets session[:user_id]' do
+      user = User.create!(name: 'Example', email: 'example@email.com')
+      session = { user_id: user.id }
+
+      user.logout!(session)
+
+      expect(session[:user_id]).to be_nil
+    end
+  end
+
+# describe 'Session_reset' do
+#   it 'ensures logout! resets session[:user_id]' do
+#     user = User.create!(name: 'Example', email: 'example@email.com')
+#     session = { user_id: user.id }
+
+#     user.logout!(session)
+
+#     expect(session[:user_id]).to be_nil
+#   end
+# end  
+
+### 20
+describe 'Validation_failure' do
+    it 'verifies that user.save! raises ActiveRecord::RecordInvalid if user fails validation' do
+      user = User.new
+      expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
+
+# describe 'Validation_failure' do
+#   it 'verifies that user.save! raises ActiveRecord::RecordInvalid if user fails validation' do
+#     user = User.new
+#     expect { user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+#   end
+# end
 end

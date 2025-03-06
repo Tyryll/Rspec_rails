@@ -1,6 +1,9 @@
 class User < ApplicationRecord
     has_many :orders, dependent: :destroy  # User has many orders
 
+    validates :name, presence: true # Name should be present
+    validates :email, presence: true, uniqueness: true # Email should be unique
+
     enum :role, { user: 0, admin: 1 }  # Define roles
 
     def activate!
@@ -39,5 +42,9 @@ class User < ApplicationRecord
     def send_email
         # Logic to send email
         "Email sent"
+    end
+
+    def logout!(session)
+        session[:user_id] = nil
     end
 end
