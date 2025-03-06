@@ -38,6 +38,6 @@ class User < ApplicationRecord
 
     def send_email
         # Logic to send email
-        'Email sent'
+        "Email sent"
     end
 end
