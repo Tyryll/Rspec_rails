@@ -3,7 +3,7 @@ class User < ApplicationRecord
     enum :role, { user: 0, admin: 1 }  # Define roles
 
     def activate!
-        update(active: true)
+        update!(active: true)
     end
 
     def greet
@@ -12,5 +12,5 @@ class User < ApplicationRecord
 
     def admin?
         role == 'admin'
-      end
+    end
 end

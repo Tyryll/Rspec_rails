@@ -3,22 +3,25 @@ require 'rails_helper'
 describe User, type: :model do
     ###1
   describe '#activate!' do # if want to test model behavior
-    #it 'sets active to true' do
-      #user = User.create!(name: 'Example', email: 'name@example.com', active: false)
+    it 'sets active to true' do
+      user = User.create!(name: 'Example', email: 'name@example.com', active: false)
 
-      #user.activate!
+      user.activate!
 
-      #expect(user.active).to be true
-    #end
+      expect(user.active).to be true
+    end
 
-    it 'sets active to true' do # if want to test activate! behavior only
-        user = instance_double(User, activate!: true, active: true)  #uses double
+    # it 'sets active to true' do # if want to test activate! behavior only
+    #     binding.pry
+    #     user = instance_double(User, activate!: true, active: false)  #uses double
+    #     allow(user).to receive(:active).and_return("Hello, Example")
   
-        user.activate!  
+    #     user.activate!  
   
-        expect(user.active).to be true 
-      end
+    #     expect(user.active).to be true 
+    # end
   end
+
     ##2
   context 'User creation' do
     it 'increases the User count by 1' do
